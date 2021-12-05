@@ -1,0 +1,27 @@
+{
+  "name": "task04",
+  "version": "1.0.0",
+  "description": "this is a todo list app, made with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MayaG308/MiLab_2022.git"
+  },
+  "keywords": [
+    "node",
+    "npm",
+    "todo"
+  ],
+  "author": "maya greenberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MayaG308/MiLab_2022/issues"
+  },
+  "homepage": "https://github.com/MayaG308/MiLab_2022#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
