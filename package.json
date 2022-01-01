@@ -1,0 +1,28 @@
+{
+  "name": "tasko6",
+  "version": "1.0.0",
+  "description": "stock app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MayaG308/MiLab_2022.git"
+  },
+  "keywords": [
+    "stock",
+    "node",
+    "android"
+  ],
+  "author": "Maya_Greenberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MayaG308/MiLab_2022/issues"
+  },
+  "homepage": "https://github.com/MayaG308/MiLab_2022#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "request": "^2.88.2"
+  }
+}
