@@ -15,14 +15,18 @@ import org.json.JSONObject;
 
 public class PriceFetcher {
     private RequestQueue _queue;
-    public static String stockName;
-    public final static String REQUEST_URL = "http://127.0.0.10:8080/" + stockName;
+    public final static String REQUEST_URL = "http://10.0.2.2:8080/stockName?symbol=";
 
     public class StockResponse {
 
-        public double stockPrice;
-        public StockResponse(double n) {
-            this.stockPrice = n;
+        public boolean isError;
+        public String symbol;
+        public String stockPrice;
+
+        public StockResponse(boolean isError, String symbol, String stockPrice) {
+            this.stockPrice = stockPrice;
+            this.isError = isError;
+            this.symbol = symbol;
         }
 
     }
@@ -31,23 +35,21 @@ public class PriceFetcher {
         void onResponse(StockResponse response);
     }
 
-    public PriceFetcher(Context context, String s) {
-
+    public PriceFetcher(Context context) {
         _queue = Volley.newRequestQueue(context);
-        stockName = s;
     }
 
     private StockResponse createErrorResponse() {
-        return new StockResponse(130.03);
+        return new StockResponse(true, null, "0");
     }
 
     public void dispatchRequest(final StockResponseListener listener) {
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL, null,
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL+MainActivity.stockNameHolder, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            StockResponse res = new StockResponse(response.getDouble("price"));
+                            StockResponse res = new StockResponse(false, response.getString("symbol"), response.getString("price"));
                             listener.onResponse(res);
                         }
                         catch (JSONException e) {

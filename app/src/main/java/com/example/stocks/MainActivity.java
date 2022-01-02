@@ -12,7 +12,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText stockInput;
-    String stockNameHolder;
+    TextView resultOutput;
+    public static String stockNameHolder;
     Button Fetch;
 
     @Override
@@ -22,24 +23,29 @@ public class MainActivity extends AppCompatActivity {
 
         Fetch = (Button) findViewById(R.id.Fetch);
         stockInput = (EditText) findViewById(R.id.stockInput);
+        resultOutput = (TextView) findViewById(R.id.StockPrice);
 
         Fetch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast toast = Toast.makeText(v.getContext(), "Calculating stock price...", Toast.LENGTH_LONG);
                 toast.show();
-                stockNameHolder = stockInput.getText().toString();
-                fetchPrice(v, stockNameHolder);
+                stockNameHolder = (String) stockInput.getText().toString();
+                fetchPrice(v);
             }
 
-            private void fetchPrice(final View v, String s) {
+            private void fetchPrice(final View v) {
 
-                final PriceFetcher fetcher = new PriceFetcher(v.getContext(), s);
+                final PriceFetcher fetcher = new PriceFetcher(v.getContext());
 
                 fetcher.dispatchRequest(new PriceFetcher.StockResponseListener() {
                     @Override
                     public void onResponse(PriceFetcher.StockResponse response) {
-                        ((TextView)MainActivity.this.findViewById(R.id.StockPrice)).setText(String.valueOf(response.stockPrice));
+
+                        if (response.isError){
+                            Toast.makeText(v.getContext(), "ERROR FOUND", Toast.LENGTH_LONG);
+                        }
+                        resultOutput.setText(response.stockPrice);
                     }
                 });
             }

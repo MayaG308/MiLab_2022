@@ -10,35 +10,38 @@
 
     <ImageView
         android:id="@+id/Background"
-        android:layout_width="803dp"
-        android:layout_height="1016dp"
+        android:layout_width="442dp"
+        android:layout_height="915dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.806"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        app:srcCompat="@drawable/trading" />
+        app:layout_constraintVertical_bias="0.38"
+        app:srcCompat="@drawable/timi" />
 
     <Button
         android:id="@+id/Fetch"
-        android:layout_width="151dp"
-        android:layout_height="78dp"
-        android:layout_marginBottom="304dp"
-        android:text="Fetch Price"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="119dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
+        android:text="Hit Timon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/StockName"
         android:layout_width="368dp"
         android:layout_height="77dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="488dp"
         android:fontFamily="monospace"
-        android:text="Enter stock name:"
+        android:text="Give Timi a stock:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/purple_500"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,26 +49,30 @@
         android:id="@+id/stockInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="228dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
+        android:textColor="@color/purple_200"
         android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/StockName" />
 
     <TextView
         android:id="@+id/StockPrice"
-        android:layout_width="233dp"
-        android:layout_height="53dp"
-        android:layout_marginBottom="180dp"
+        android:layout_width="180dp"
+        android:layout_height="59dp"
         android:fontFamily="serif-monospace"
         android:text="Stock Price"
-        android:textSize="34dp"
+        android:textColor="@color/purple_500"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.116" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

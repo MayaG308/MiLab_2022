@@ -9,9 +9,28 @@ app.get('/', (req, res) => {
     res.send(`Welcome to Maya\'s server!`)
 })
 
-app.get('/:stockName', (req, res) => {
-    const stockName = req.params.stockName
-    const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockName}&apikey=${API_KEY}`
+
+app.get(`/:stock`, function (req, res) {
+  
+  let stockName = req.query.symbol;
+  console.log(stockName)
+  
+  fetchPrice(stockName, (err, price) => {
+	  if (err) {
+		 return res.status(500).json({err: err.message});
+	  }
+	  
+	  else {
+		  return res.json(price)
+	  }
+  });
+});
+
+
+function fetchPrice(stock, cb) {
+	
+    let url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock}&apikey=${API_KEY}`
+	
     request.get({
             url: url,
             json: true,
@@ -26,16 +45,18 @@ app.get('/:stockName', (req, res) => {
                 console.log('Status:', result.statusCode);
             } else {
                 // data is successfully parsed as a JSON object
-                const price = data[`Global Quote`][`05. price`]
-                console.log(price)
-				console.log(data["Global Quote"])
-                res.send({
-                    price
-                });
-				return price;
+				console.log(data)
+				
+                price = data[`Global Quote`][`05. price`]
+                console.log(`The price is ${price}`)
+				
+				return cb(null, {
+					symbol: stock,
+					price: price
+				});
             }
-        })
-})
+        });
+}
 
 app.listen(port, () => {
     console.log(`server up and running on port ${port}`)
